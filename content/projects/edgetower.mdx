@@ -1,0 +1,36 @@
+---
+title: "Edgetower"
+summary: "AI-driven surveillance and operations-intelligence suite — a live SaaS product founded under RCT and currently maintained. Real customers, real production load."
+stack: ["Python", "Django", "FastAPI", "PostgreSQL", "Redis", "OpenCV", "Computer Vision", "AWS"]
+industry: "Security & Operations Intelligence"
+dateRange: "2020 — Present"
+featured: true
+detail: true
+order: 1
+externalUrl: "https://edgetower.co.za"
+status: "live"
+---
+
+## Context
+
+Edgetower is a SaaS suite for AI-driven surveillance and operations intelligence. Born out of RCT, it's the product I keep maintained and shipping while taking on other engagements — a working demonstration that I build *and* operate.
+
+The platform stitches together computer vision, alerting, and operational workflows on top of camera feeds and edge devices. The "before" picture is the typical surveillance setup: hours of footage nobody watches, alerts everyone ignores, no operational follow-through. The "after" picture is *intelligence* — only events that matter, routed to the people who need to act.
+
+## What I built
+
+I designed and shipped the platform end-to-end: backend, frontend, edge agents, ML pipelines, integrations, deployment, ongoing ops.
+
+- **Backend** in Python — Django for the admin / management plane, FastAPI for the high-throughput API surface.
+- **Computer vision** layer on OpenCV, TensorFlow, and YOLO — object detection, classification, and event extraction from live and recorded camera feeds.
+- **Storage** in PostgreSQL with Redis for hot state and queues.
+- **Alerting** integrated to **Telegram** and **WhatsApp** so operators get events on the channels they already live in — not in a dashboard nobody opens.
+- **Cloud infrastructure** on AWS — EC2 for compute, RDS for Postgres, CloudWatch for observability.
+
+## Current state
+
+Live, in production, with real customers — and I'm still the one shipping updates. Roadmap is driven by what operators actually ask for, not what a sales deck imagines.
+
+<Callout label="Live product">
+  Visit [edgetower.co.za](https://edgetower.co.za) for the product story.
+</Callout>
