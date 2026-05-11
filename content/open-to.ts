@@ -26,6 +26,6 @@ export const openTo: OpenToEntry[] = [
   {
     title: "RCT consulting engagements",
     description:
-      "Industrial automation, custom SaaS, AI prototypes, end-to-end build-outs — through RCT and the Edgetower platform.",
+      "Industrial automation, custom SaaS, AI prototypes, end-to-end build-outs — through RCT and the edgE:Tower platform.",
   },
 ];

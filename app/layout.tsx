@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   keywords: [
     "Dewald Scholtz",
     "RCT",
-    "Edgetower",
+    "edgE:Tower",
     "Senior Full-Stack",
     "Tech Lead",
     "Python",

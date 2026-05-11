@@ -114,7 +114,7 @@ export default function Home() {
                 rel="noreferrer"
                 className="font-medium text-fg underline decoration-accent decoration-2 underline-offset-4 transition-colors hover:text-accent"
               >
-                Edgetower
+                edgE:Tower
               </a>{" "}
               suite, and plugging into engagements that move the needle on both sides.
             </p>

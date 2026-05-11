@@ -87,12 +87,12 @@ describe("composeCv", () => {
     expect(cv.experience[0].company).toBe("RCT");
   });
 
-  it("includes RCT's notable engagements (Think WiFi and OTH)", async () => {
+  it("includes RCT's notable engagements (Think Digital and OTH)", async () => {
     const cv = await composeCv({ projectsDir: tmpDir });
     const rct = cv.experience.find((e) => e.company === "RCT");
     expect(rct?.engagements).toBeDefined();
     const clients = rct?.engagements?.map((e) => e.client) ?? [];
-    expect(clients.some((c) => /Think WiFi/.test(c))).toBe(true);
+    expect(clients.some((c) => /Think Digital/.test(c))).toBe(true);
     expect(clients.some((c) => /Omega Test House/.test(c))).toBe(true);
   });
 

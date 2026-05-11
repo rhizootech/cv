@@ -28,13 +28,13 @@ export const experience: ExperienceItem[] = [
     description:
       "Consultations, new-product development, prototyping, and handing solutions to customers — across AI, IoT, computer vision, cybersecurity, industrial automation, and SaaS. From autonomous farm robots to lab automation to SIEM platforms to AdTech — name the requirement and I build the product.",
     highlights: [
-      "Ship and operate Edgetower — AI surveillance & ops-intelligence SaaS, live and maintained.",
+      "Ship and operate edgE:Tower — AI surveillance & ops-intelligence SaaS, live and maintained.",
       "Delivered to Digital Marketing, Physical Security, Cybersecurity, Healthcare, Research Labs, and Mining clients.",
       "Polymath stack: Python, Node, C/C++, Django/FastAPI/Sanic, OpenCV/TensorFlow/YOLO, MQTT, Pub/Sub, Postgres/Redis/Mongo/Influx/BigQuery, AWS/GCP/Azure.",
     ],
     engagements: [
       {
-        client: "Think WiFi (contracted via RCT)",
+        client: "Think Digital (contracted via RCT)",
         dateRange: "2022 — 2024",
         summary:
           "Ad-pacing algorithm, MAC-keyed client context, Pub/Sub → BigQuery event pipeline, and a Django back-office for the captive-portal ad network. Ended amicably end of 2024.",
