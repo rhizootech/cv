@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { LinkedinIcon, GithubIcon } from "@/components/icons";
 import { ScrollspyNav, type NavItem } from "@/components/scrollspy-nav";
 import { SelectedWork } from "@/components/sections/selected-work";
@@ -50,6 +51,17 @@ export default function Home() {
             <div className="reveal-on-load reveal-on-load-4">
               <ScrollspyNav items={NAV_ITEMS} />
             </div>
+
+            {/* Printable CV link */}
+            <Link
+              href="/cv"
+              className="reveal-on-load reveal-on-load-5 group mt-10 hidden items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-fg-faint transition-colors hover:text-accent lg:inline-flex"
+            >
+              <span>// view printable CV</span>
+              <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
+                →
+              </span>
+            </Link>
           </div>
 
           {/* Socials */}
