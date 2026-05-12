@@ -1,4 +1,5 @@
-import { identity, summary } from "@/content/identity";
+import { identity } from "@/content/identity";
+import { aboutSummary } from "@/content/about";
 import { experience, type ExperienceItem } from "@/content/experience";
 import { stack, type StackGroup } from "@/content/stack";
 import { getFeaturedProjects } from "@/lib/content/projects";
@@ -8,7 +9,8 @@ export type CvIdentity = typeof identity;
 
 export type CvViewModel = {
   identity: CvIdentity;
-  summary: string;
+  /** Plain-text About paragraphs, kept in sync with the home page via content/about.tsx. */
+  summary: string[];
   experience: ExperienceItem[];
   projects: Project[];
   stack: StackGroup[];
@@ -27,7 +29,7 @@ export async function composeCv(
   const featuredProjects = await getFeaturedProjects(opts.projectsDir);
   return {
     identity,
-    summary,
+    summary: aboutSummary,
     experience: [...experience].sort((a, b) => a.order - b.order),
     projects: [...featuredProjects].sort((a, b) => a.order - b.order),
     stack,

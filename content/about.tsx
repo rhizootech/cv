@@ -8,9 +8,16 @@ const emphasis = (children: ReactNode) => (
 );
 
 /**
- * The About section paragraphs, rendered in order on the home page.
- * Edit the text or markup here. Each entry is one <p> on the page.
+ * About copy lives in two parallel forms:
+ *
+ *   - `aboutParagraphs` — JSX with links/emphasis, rendered on the home page
+ *   - `aboutSummary`    — plain-text version, rendered in the /cv print route
+ *
+ * Both are authored here so the two surfaces stay in sync. Edit the prose in
+ * both arrays when you change the About — there's intentionally no automatic
+ * JSX-to-text conversion to keep the system simple.
  */
+
 export const aboutParagraphs: ReactNode[] = [
   <>
     {emphasis(<>I&rsquo;m possible.</>)} I look past the
@@ -54,4 +61,9 @@ export const aboutParagraphs: ReactNode[] = [
     </a>{" "}
     umbrella, and plugging into engagements that move the needle on both sides.
   </>,
+];
+
+export const aboutSummary: string[] = [
+  "I’m possible. I look past the “impossible” label. If there’s a problem, I find a solution. If there’s a technology I haven’t touched, I’ll learn it. At my core I’m a builder — I build whatever the problem actually needs.",
+  "Started in core network engineering at Vodacom in 2004, bet on myself in 2017, and have been founder-mode ever since. AI, IoT, cybersecurity, industrial automation, full-stack SaaS — I weave technologies together to solve whatever the customer actually needs (and often what they didn’t know they needed). Right now that means running RCT, maintaining the edgE:Tower suite under the Sentronics umbrella, and plugging into engagements that move the needle on both sides.",
 ];

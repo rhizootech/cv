@@ -40,7 +40,9 @@ export default async function CvPage() {
 
           <section>
             <h2>Summary</h2>
-            <p>{cv.summary}</p>
+            {cv.summary.map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
+            ))}
           </section>
 
           <section>

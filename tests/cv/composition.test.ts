@@ -56,9 +56,11 @@ describe("composeCv", () => {
     expect(cv.identity.location).toMatch(/South Africa/);
   });
 
-  it("includes a non-empty summary", async () => {
+  it("includes a non-empty summary composed of one or more paragraphs", async () => {
     const cv = await composeCv({ projectsDir: tmpDir });
-    expect(cv.summary.length).toBeGreaterThan(50);
+    expect(cv.summary.length).toBeGreaterThan(0);
+    expect(cv.summary.every((p) => p.length > 0)).toBe(true);
+    expect(cv.summary.join(" ").length).toBeGreaterThan(50);
   });
 
   it("includes only featured projects (non-featured are filtered out)", async () => {
