@@ -39,6 +39,22 @@
 
 /* ----- CCTV portrait viewfinder (hero sidebar background) ----- */
 
+/* Shared feather mask: oval that fades the viewfinder edges into the canvas. */
+.cctv-portrait,
+.cctv-scanlines,
+.cctv-gradient {
+  -webkit-mask-image: radial-gradient(
+    ellipse 47% 70% at center,
+    black 70%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 47% 70% at center,
+    black 70%,
+    transparent 100%
+  );
+}
+
 .cctv-portrait {
   background-image: url("/media/portrait.jpg");
   background-size: cover;
@@ -83,7 +99,7 @@ body::after {
   content: "";
   position: fixed;
   top: -20vh;
-  left: -10vw;
+  right: -10vw;
   width: 70vw;
   height: 90vh;
   background: radial-gradient(
