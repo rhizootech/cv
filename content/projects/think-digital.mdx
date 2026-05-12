@@ -1,7 +1,7 @@
 ---
-title: "Think Digital ad-pacing platform"
-summary: "Ad-pacing algorithm, MAC-keyed client context for ad rotation, a Django back-office for sales and management partners, and a Pub/Sub → BigQuery event pipeline for every captive-portal interaction across South Africa. Contracted through RCT."
-stack: ["Python", "Django", "DRF", "Google Pub/Sub", "BigQuery", "PostgreSQL", "Algorithm design"]
+title: "Think Digital Media"
+summary: "Ad pacing and delivery algorithm, maintaining MAC-keyed client context for ad rotation across South-Africa and abroad, a Django back-office for sales and management partners and access point infra, and a Google Ad Manager for every captive-portal interaction across South Africa. Contracted through RCT."
+stack: ["Python", "Django", "REST Framework", "Fast API", "Google Pub/Sub", "Google Cloud Functions", "BigQuery", "PostgreSQL", "Algorithm design"]
 industry: "AdTech · SaaS"
 dateRange: "2022 — 2024"
 featured: true
@@ -40,8 +40,12 @@ A full management plane for the people who run the business:
 
 ## Stack & architecture
 
-Python, Django, DRF for the back-office and APIs. PostgreSQL for transactional data. Google Pub/Sub for event ingestion. Google BigQuery for the analytics warehouse. JavaScript for the captive-portal client surface and a small amount of in-app interactivity.
+Python, Django, DRF for the back-office and APIs. PostgreSQL for transactional data. Google Pub/Sub for event ingestion. Google Cloud Functions to update pacing for each AP in the Ad Delivery network. Google BigQuery for the analytics warehouse. JavaScript for the captive-portal client surface and a small amount of in-app interactivity.
 
 ## Outcome
 
-The engagement ended amicably at the close of 2024. The platform was the core operational system of the business — the pacing algorithm, the event pipeline, the back-office — running production load every day across South Africa for three years.
+The engagement ended amicably at the close of 2024. The platform was the core operational system of the business — the pacing algorithm, the event pipeline, the back-office — running production load every day across South Africa for two and a half years.
+
+<Callout label="Live product">
+  Visit [Think Digital](https://www.thinkwifi.online) for the product story.
+</Callout>

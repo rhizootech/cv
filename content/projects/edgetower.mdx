@@ -1,8 +1,8 @@
 ---
 title: "edgE:Tower"
-summary: "AI-driven surveillance and operations-intelligence suite — a live SaaS product founded under RCT and currently maintained. Real customers, real production load."
-stack: ["Python", "Django", "FastAPI", "PostgreSQL", "Redis", "OpenCV", "Computer Vision", "AWS"]
-industry: "Security & Operations Intelligence"
+summary: "AI-driven surveillance and operations-intelligence suite — a live SaaS product founded under RCT and currently lives under the Sentronics umbrella . Real customers, real production load."
+stack: ["Python", "Django", "FastAPI", "PostgreSQL", "Redis", "OpenCV", "Computer Vision", "AWS", "Azure"]
+industry: "Physical Security & Operations Intelligence"
 dateRange: "2020 — Present"
 featured: true
 detail: true
@@ -13,19 +13,30 @@ status: "live"
 
 ## Context
 
-edgE:Tower is a SaaS suite for AI-driven surveillance and operations intelligence. Born out of RCT, it's the product I keep maintained and shipping while taking on other engagements — a working demonstration that I build *and* operate.
+edgE:Tower is a SaaS suite for AI-driven surveillance and operations intelligence. Born out of RCT and now under the Sentronics umbrella, it's the product I keep maintained and shipping while taking on other engagements — a working demonstration that I build *and* operate.
 
 The platform stitches together computer vision, alerting, and operational workflows on top of camera feeds and edge devices. The "before" picture is the typical surveillance setup: hours of footage nobody watches, alerts everyone ignores, no operational follow-through. The "after" picture is *intelligence* — only events that matter, routed to the people who need to act.
 
 ## What I built
 
-I designed and shipped the platform end-to-end: backend, frontend, edge agents, ML pipelines, integrations, deployment, ongoing ops.
+I designed and shipped the platform end-to-end: backend, frontend, edge agents, ML/Deep Learning pipelines, integrations, deployment, ongoing ops.
 
 - **Backend** in Python — Django for the admin / management plane, FastAPI for the high-throughput API surface.
 - **Computer vision** layer on OpenCV, TensorFlow, and YOLO — object detection, classification, and event extraction from live and recorded camera feeds.
-- **Storage** in PostgreSQL with Redis for hot state and queues.
-- **Alerting** integrated to **Telegram** and **WhatsApp** so operators get events on the channels they already live in — not in a dashboard nobody opens.
-- **Cloud infrastructure** on AWS — EC2 for compute, RDS for Postgres, CloudWatch for observability.
+- **Storage** in PostgreSQL with Redis for hot state and queues together with MongoDB for unstructured data needs.
+- **Alerting** integrated to **Telegram** and **PSIMS** so operators get events on the channels they already live in + control room dashboards.
+- **Cloud infrastructure** on AWS, Azure, xneelo — the usual suspects for compute, storage, and orchestration.
+
+<ImageGallery>
+  <GalleryImage src="/media/edgetower/Screenshot 2026-05-11 171932.png" alt="edgE:Tower interface — view 1" />
+  <GalleryImage src="/media/edgetower/Screenshot 2026-05-11 172011.png" alt="edgE:Tower interface — view 2" />
+  <GalleryImage src="/media/edgetower/Screenshot 2026-05-11 172123.png" alt="edgE:Tower interface — view 3" />
+  <GalleryImage src="/media/edgetower/Screenshot 2026-05-11 172256.png" alt="edgE:Tower interface — view 4" />
+  <GalleryImage src="/media/edgetower/Screenshot 2026-05-11 172607.png" alt="edgE:Tower interface — view 5" />
+  <GalleryImage src="/media/edgetower/Screenshot 2026-05-11 172704.png" alt="edgE:Tower interface — view 6" />
+  <GalleryImage src="/media/edgetower/Screenshot 2026-05-04 095311.png" alt="edgE:Tower interface — view 7" />
+  <GalleryImage src="/media/edgetower/Screenshot 2026-05-11 090335.png" alt="edgE:Tower interface — view 8" />
+</ImageGallery>
 
 ## Current state
 
@@ -33,4 +44,7 @@ Live, in production, with real customers — and I'm still the one shipping upda
 
 <Callout label="Live product">
   Visit [edgetower.co.za](https://edgetower.co.za) for the product story.
+</Callout>
+<Callout label="Umbrella Corp.">
+  Visit [Sentronics](https://sentronics.co.za/) for the umbrella corporation.
 </Callout>

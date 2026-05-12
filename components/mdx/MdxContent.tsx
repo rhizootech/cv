@@ -3,6 +3,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Callout } from "./components/Callout";
 import { MediaFrame } from "./components/MediaFrame";
 import { Metric } from "./components/Metric";
+import { ImageGallery, GalleryImage } from "./components/ImageGallery";
 
 type Props = { children?: ReactNode; href?: string };
 
@@ -51,6 +52,8 @@ const mdxComponents: Record<string, ComponentType<Props>> = {
   Callout: Callout as ComponentType<Props>,
   MediaFrame: MediaFrame as ComponentType<Props>,
   Metric: Metric as ComponentType<Props>,
+  ImageGallery: ImageGallery as ComponentType<Props>,
+  GalleryImage: GalleryImage as ComponentType<Props>,
 };
 
 export function MdxContent({ source }: { source: string }) {

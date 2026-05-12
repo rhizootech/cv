@@ -14,6 +14,7 @@
   /* Typography — wired to next/font variables in layout.tsx */
   --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-digital: var(--font-digital), "Press Start 2P", "Courier New", monospace;
 }
 
 @layer base {
@@ -34,6 +35,34 @@
     background-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
     color: var(--color-fg);
   }
+}
+
+/* ----- CCTV portrait viewfinder (hero sidebar background) ----- */
+
+.cctv-portrait {
+  background-image: url("/media/portrait.jpg");
+  background-size: cover;
+  background-position: 42% 28%;
+  filter: grayscale(1) contrast(1.1) brightness(0.55);
+}
+
+.cctv-scanlines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    rgba(0, 0, 0, 0.38) 2px,
+    rgba(0, 0, 0, 0.38) 3px
+  );
+}
+
+.cctv-gradient {
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 14, 16, 0.42) 0%,
+    rgba(10, 14, 16, 0.7) 55%,
+    rgba(10, 14, 16, 0.95) 100%
+  );
 }
 
 /* ----- HUD bg layer: faint dot-grid + teal radial glow ----- */
@@ -97,6 +126,103 @@ body::after {
   }
   .reveal-on-load-5 {
     animation-delay: 400ms;
+  }
+}
+
+/* ----- Terminal hero: blinking cursor + RGB-split glitch ----- */
+
+@keyframes cursor-blink {
+  0%,
+  49.99% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+/*
+ * RGB-split glitch in the style of
+ * https://github.com/taimoorshahzada/Glitch-Effect-Text-Animation-using-CSS-only
+ *
+ * Two duplicated copies of the text via ::before and ::after, shifted
+ * left/right with coloured text-shadow (blue / red), then sliced into
+ * horizontal bands by an animated clip-path. The two pseudos run at
+ * different durations (1.7s vs 2.6s) so the slices desynchronise.
+ *
+ * Only active while .glitch-active is set; the wrapper JS toggles it for
+ * ~2s every random 1–15s.
+ */
+
+.glitch-text.glitch-active::before,
+.glitch-text.glitch-active::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: var(--color-canvas);
+  color: var(--color-fg);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.glitch-text.glitch-active::before {
+  left: -2px;
+  text-shadow: 1px 0 #4f7df9;
+  animation: glitch-bands 1.7s infinite linear alternate-reverse;
+}
+
+.glitch-text.glitch-active::after {
+  left: 2px;
+  text-shadow: -1px 0 #ff3a55;
+  animation: glitch-bands 2.6s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-bands {
+  0%   { clip-path: inset(100% 0 0 0); }
+  5%   { clip-path: inset(7% 0 51% 0); }
+  10%  { clip-path: inset(52% 0 21% 0); }
+  15%  { clip-path: inset(100% 0 0 0); }
+  20%  { clip-path: inset(37% 0 57% 0); }
+  25%  { clip-path: inset(100% 0 0 0); }
+  30%  { clip-path: inset(34% 0 7% 0); }
+  35%  { clip-path: inset(18% 0 16% 0); }
+  40%  { clip-path: inset(100% 0 0 0); }
+  45%  { clip-path: inset(100% 0 0 0); }
+  50%  { clip-path: inset(100% 0 0 0); }
+  55%  { clip-path: inset(4% 0 25% 0); }
+  60%  { clip-path: inset(17% 0 45% 0); }
+  65%  { clip-path: inset(100% 0 0 0); }
+  70%  { clip-path: inset(39% 0 16% 0); }
+  75%  { clip-path: inset(100% 0 0 0); }
+  80%  { clip-path: inset(100% 0 0 0); }
+  85%  { clip-path: inset(60% 0 0 0); }
+  90%  { clip-path: inset(5% 0 94% 0); }
+  95%  { clip-path: inset(49% 0 43% 0); }
+  100% { clip-path: inset(54% 0 10% 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink {
+    animation: none;
+    opacity: 1;
+  }
+  .glitch-text.glitch-active {
+    animation: none;
+  }
+  .glitch-text.glitch-active::before,
+  .glitch-text.glitch-active::after {
+    display: none;
   }
 }
 

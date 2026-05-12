@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { LinkedinIcon, GithubIcon } from "@/components/icons";
+import { HeroName } from "@/components/hero-name";
+import { CornerBrackets } from "@/components/hud/CornerBrackets";
 import { ScrollspyNav, type NavItem } from "@/components/scrollspy-nav";
+import { AboutSection } from "@/components/sections/about-section";
 import { SelectedWork } from "@/components/sections/selected-work";
 import { NowSection } from "@/components/sections/now-section";
 import { CareerArcSection } from "@/components/sections/career-arc-section";
@@ -21,14 +24,25 @@ const GITHUB_URL = "https://github.com/scholtde";
 
 export default function Home() {
   return (
-    <main className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 md:py-20 lg:py-0">
+    <main className="mx-auto min-h-screen max-w-screen-xl px-8 py-12 md:px-16 md:py-20 lg:px-24 lg:py-0">
       <div className="lg:flex lg:justify-between lg:gap-4">
         {/* Left: sticky sidebar */}
-        <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24">
-          <div>
-            <h1 className="reveal-on-load text-5xl font-bold tracking-tight text-fg sm:text-6xl">
-              Dewald Scholtz
-            </h1>
+        <header className="relative lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24">
+          {/* CCTV portrait viewfinder — lg+ only */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -z-10 hidden overflow-hidden lg:block"
+          >
+            <div className="cctv-portrait absolute inset-0" />
+            <div className="cctv-scanlines absolute inset-0" />
+            <div className="cctv-gradient absolute inset-0" />
+            <CornerBrackets size="size-4" />
+          </div>
+
+          <div className="lg:pl-10">
+            <div className="reveal-on-load">
+              <HeroName />
+            </div>
             <h2 className="reveal-on-load reveal-on-load-1 mt-3 text-lg font-medium text-fg sm:text-xl">
               Founder &middot; Polymath &middot; Builder
             </h2>
@@ -65,7 +79,7 @@ export default function Home() {
           </div>
 
           {/* Socials */}
-          <ul className="reveal-on-load reveal-on-load-5 ml-1 mt-8 flex items-center gap-5 text-fg-muted">
+          <ul className="reveal-on-load reveal-on-load-5 ml-1 mt-8 flex items-center gap-5 text-fg-muted lg:pl-10">
             <li>
               <a
                 href={LINKEDIN_URL}
@@ -94,50 +108,7 @@ export default function Home() {
         {/* Right: scrollable content */}
         <div className="pt-24 lg:w-1/2 lg:py-24">
           {/* 01. About */}
-          <section
-            id="about"
-            className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
-          >
-            <h3 className="sr-only">About</h3>
-            <p className="leading-relaxed text-fg-muted">
-              I&rsquo;m an original Nerd &mdash; one of the true ones from the &rsquo;90s
-              &mdash; and I still embrace it. At my core I&rsquo;m a builder. My world has
-              shifted from knowing &ldquo;everything about something&rdquo; to knowing
-              &ldquo;something about everything.&rdquo; If there&rsquo;s a problem, I find
-              a solution. If there&rsquo;s a technology I haven&rsquo;t touched,
-              I&rsquo;ll learn it and build with it.
-            </p>
-            <p className="mt-4 leading-relaxed text-fg-muted">
-              <span className="text-fg">I&rsquo;m possible.</span> I look past the
-              &ldquo;impossible&rdquo; label and build whatever the problem actually
-              needs. Right now that means running{" "}
-              <a
-                href="https://rc.technology"
-                target="_blank"
-                rel="noreferrer"
-                className="font-medium text-fg underline decoration-accent decoration-2 underline-offset-4 transition-colors hover:text-accent"
-              >
-                RCT
-              </a>
-              , maintaining the{" "}
-              <a
-                href="https://edgetower.co.za"
-                target="_blank"
-                rel="noreferrer"
-                className="font-medium text-fg underline decoration-accent decoration-2 underline-offset-4 transition-colors hover:text-accent"
-              >
-                edgE:Tower
-              </a>{" "}
-              suite, and plugging into engagements that move the needle on both sides.
-            </p>
-            <p className="mt-4 leading-relaxed text-fg-muted">
-              Started in core network engineering at Vodacom in 2004, bet on myself in
-              2017, and have been founder-mode ever since. AI, IoT, cybersecurity,
-              industrial automation, full-stack SaaS &mdash; I weave technologies
-              together to solve whatever the customer actually needs (and often what they
-              didn&rsquo;t know they needed).
-            </p>
-          </section>
+          <AboutSection />
 
           <NowSection />
           <SelectedWork />
