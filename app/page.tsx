@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { LinkedinIcon, GithubIcon } from "@/components/icons";
 import { HeroName } from "@/components/hero-name";
-import { CornerBrackets } from "@/components/hud/CornerBrackets";
+import { CctvPortrait } from "@/components/cctv-portrait";
 import { ScrollspyNav, type NavItem } from "@/components/scrollspy-nav";
 import { AboutSection } from "@/components/sections/about-section";
 import { SelectedWork } from "@/components/sections/selected-work";
@@ -29,15 +29,7 @@ export default function Home() {
         {/* Left: sticky sidebar */}
         <header className="relative lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24">
           {/* CCTV portrait viewfinder — lg+ only */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 -z-10 hidden overflow-hidden lg:block"
-          >
-            <div className="cctv-portrait absolute inset-0" />
-            <div className="cctv-scanlines absolute inset-0" />
-            <div className="cctv-gradient absolute inset-0" />
-            <CornerBrackets size="size-4" />
-          </div>
+          <CctvPortrait />
 
           <div className="lg:pl-10">
             <div className="reveal-on-load">

@@ -42,7 +42,8 @@
 /* Shared feather mask: oval that fades the viewfinder edges into the canvas. */
 .cctv-portrait,
 .cctv-scanlines,
-.cctv-gradient {
+.cctv-gradient,
+.cctv-scanner-wrap {
   -webkit-mask-image: radial-gradient(
     ellipse 47% 70% at center,
     black 70%,
@@ -56,7 +57,7 @@
 }
 
 .cctv-portrait {
-  background-image: url("/media/portrait.jpg");
+  background-image: url("/media/portrait.webp");
   background-size: cover;
   background-position: 42% 28%;
   filter: grayscale(1) contrast(1.1) brightness(0.55);
@@ -79,6 +80,89 @@
     rgba(10, 14, 16, 0.7) 55%,
     rgba(10, 14, 16, 0.95) 100%
   );
+}
+
+/*
+ * Scanner line — a thin teal horizontal bar that sweeps top-to-bottom over
+ * the viewfinder on a loop. Uses `mix-blend-mode: screen` so as it passes
+ * over the portrait, the area underneath brightens (the brightness bump
+ * the user wants), then darkens back as it moves on.
+ *
+ * `.cctv-scanner-wrap` is the masked container, so the scanner fades at the
+ * viewfinder's feathered edges just like the other CCTV layers. The line
+ * itself is full-width but positioned `top: N%` of the wrap so its movement
+ * is animated cleanly with percentages.
+ */
+
+.cctv-scanner-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -10%;
+  height: 18px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(53, 203, 187, 0.03) 25%,
+    rgba(53, 203, 187, 0.15) 45%,
+    rgba(53, 203, 187, 0.4) 50%,
+    rgba(53, 203, 187, 0.15) 55%,
+    rgba(53, 203, 187, 0.03) 75%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/*
+ * Motion shape:
+ *   0%  → 58%  : descent, ease-out (slows toward bottom)   ~850ms
+ *   58% → 68%  : brief hold at the bottom                   ~145ms
+ *   68% → 100% : return to top, ease-in (accelerating)      ~465ms
+ *
+ * Per-keyframe `animation-timing-function` controls the easing of the
+ * segment *starting at* that keyframe. The outer `animation: ... linear`
+ * is just the fallback for any unset segment.
+ */
+
+@keyframes cctv-scan {
+  0% {
+    top: -10%;
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.25, 0.1, 0.4, 1);
+  }
+  6% {
+    opacity: 1;
+  }
+  58% {
+    top: 100%;
+    opacity: 1;
+    animation-timing-function: linear;
+  }
+  68% {
+    top: 100%;
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.15);
+  }
+  100% {
+    top: -10%;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cctv-scanner-line.cctv-scanning {
+    animation: cctv-scan 1.45s linear forwards;
+  }
+}
+
+/* Recording dot used by the "Scanning Profile..." indicator while a sweep is active. */
+.scan-rec-dot {
+  background-color: #a10512;
+  box-shadow:
+    0 0 8px rgba(161, 5, 18, 0.7),
+    0 0 2px rgba(161, 5, 18, 0.95);
 }
 
 /* ----- HUD bg layer: faint dot-grid + teal radial glow ----- */
