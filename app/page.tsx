@@ -28,10 +28,10 @@ export default function Home() {
       <div className="lg:flex lg:justify-between lg:gap-4">
         {/* Left: sticky sidebar */}
         <header className="relative lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24">
-          {/* CCTV portrait viewfinder — lg+ only */}
+          {/* CCTV portrait viewfinder — in-flow block on mobile, sticky sidebar bg on lg+ */}
           <CctvPortrait />
 
-          <div className="lg:pl-10">
+          <div className="relative z-10 lg:pl-10">
             <div className="reveal-on-load">
               <HeroName />
             </div>
@@ -71,7 +71,7 @@ export default function Home() {
           </div>
 
           {/* Socials */}
-          <ul className="reveal-on-load reveal-on-load-5 ml-1 mt-8 flex items-center gap-5 text-fg-muted lg:pl-10">
+          <ul className="reveal-on-load reveal-on-load-5 relative z-10 ml-1 mt-8 flex items-center gap-5 text-fg-muted lg:pl-10">
             <li>
               <a
                 href={LINKEDIN_URL}

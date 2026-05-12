@@ -8,13 +8,18 @@ const PAUSE_MIN_MS = 5000;
 const PAUSE_MAX_MS = 12000;
 
 /**
- * The hero sidebar's background: feathered grayscale portrait + scanlines +
- * dark gradient + sweeping scanner line + teal corner brackets. lg+ only.
+ * The hero's CCTV viewfinder: feathered grayscale portrait + scanlines + dark
+ * gradient + sweeping scanner line + corner brackets + HUD overlays.
  *
- * Random schedule (5–12 s pause between sweeps). Both the scanner line and
- * the top-right "Scanning Profile..." indicator are gated on the same
- * `scanIteration` state, so they appear and disappear together with each
- * sweep. The `key` increments per scan so the CSS animation cleanly remounts.
+ * Layout swap:
+ *   - Mobile (< lg): an in-flow block at the top of the header, 50vh tall.
+ *     Scrolls with the page — user can scroll past it.
+ *   - Desktop (≥ lg): absolute-positioned, fills the sticky sidebar behind
+ *     the content. Stays put as the right column scrolls.
+ *
+ * All overlay children (scanner, "Scanning Profile..." indicator, HUD stats,
+ * corner brackets) sit inside the wrapper so they position relative to the
+ * viewfinder's box in both layouts.
  */
 export function CctvPortrait() {
   const [scanIteration, setScanIteration] = useState<number | null>(null);
@@ -48,32 +53,26 @@ export function CctvPortrait() {
   const isScanning = scanIteration !== null;
 
   return (
-    <>
-      {/* Background CCTV layers — behind content */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 hidden overflow-hidden lg:block"
-      >
-        <div className="cctv-portrait absolute inset-0" />
-        <div className="cctv-scanlines absolute inset-0" />
-        <div className="cctv-gradient absolute inset-0" />
-        <div className="cctv-scanner-wrap absolute inset-0">
-          {isScanning && (
-            <div
-              key={scanIteration}
-              className="cctv-scanner-line cctv-scanning"
-            />
-          )}
-        </div>
-        <CornerBrackets size="size-4" />
+    <div
+      aria-hidden="true"
+      className="pointer-events-none relative mb-8 h-[55vh] w-full overflow-hidden lg:absolute lg:inset-0 lg:mb-0 lg:h-auto lg:w-auto"
+    >
+      <div className="cctv-portrait absolute inset-0" />
+      <div className="cctv-scanlines absolute inset-0" />
+      <div className="cctv-gradient absolute inset-0" />
+      <div className="cctv-scanner-wrap absolute inset-0">
+        {isScanning && (
+          <div
+            key={scanIteration}
+            className="cctv-scanner-line cctv-scanning"
+          />
+        )}
       </div>
+      <CornerBrackets size="size-4" />
 
-      {/* "Scanning Profile..." indicator — overlay, lg+ only, only while sweeping */}
+      {/* "Scanning Profile..." indicator — only while sweeping */}
       {isScanning && (
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute right-6 top-6 hidden items-center gap-2 lg:flex"
-        >
+        <div className="absolute right-4 top-4 flex items-center gap-2 lg:right-6 lg:top-6">
           <span className="scan-rec-dot inline-block size-1.5 rounded-full" />
           <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-fg-muted">
             Scanning Profile...
@@ -81,15 +80,12 @@ export function CctvPortrait() {
         </div>
       )}
 
-      {/* HUD stat readout — bottom-right, always visible, lg+ only */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-6 right-6 hidden flex-col items-end gap-0.5 font-mono text-[9px] uppercase leading-tight tracking-[0.18em] text-fg-faint lg:flex"
-      >
+      {/* HUD stat readout — always visible */}
+      <div className="absolute bottom-4 right-4 flex flex-col items-end gap-0.5 font-mono text-[9px] uppercase leading-tight tracking-[0.18em] text-fg-faint lg:bottom-6 lg:right-6">
         <span>// CAM_01 · WC-ZA</span>
         <span>// LAT -32.50° · LON +18.40°</span>
         <span>// FEED · NOMINAL</span>
       </div>
-    </>
+    </div>
   );
 }
